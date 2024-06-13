@@ -199,7 +199,7 @@ import Layout from "../layouts/Layout.astro";
 	const generateAnimation = (frames: string[]) => {
 		premadeAnimations.buySoda(frames);
 
-		for (let i = 0; i < randomInRange(7, 12); ++i) {
+		for (let i = 0; i < randomInRange(12, 18); ++i) {
 			addFrames(frames, "normal", randomInRange(12, 24 * 2));
 			const choice = randomInRange(100);
 			if (i % 2 === 0) {
