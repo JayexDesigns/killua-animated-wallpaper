@@ -4,6 +4,7 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Killua Animated Wallpaper">
 	<canvas id="canvas" width="1920" height="1080"></canvas>
+	<audio id="audio" src="audio.mp3"></audio>
 </Layout>
 
 <style>
@@ -207,18 +208,19 @@ import Layout from "../layouts/Layout.astro";
 					premadeAnimations.blink(frames);
 				}
 			} else {
-				// if (choice < 30) {
-				// 	premadeAnimations.lookUp(frames);
-				// 	addFrames(frames, "look_up_3", randomInRange(24, 24 * 3));
-				// 	premadeAnimations.lookDown(frames);
-				// } else if (choice >= 30 && choice < 85) {
-				// 	premadeAnimations.startDrink(frames);
-				// 	premadeAnimations.drink(frames, randomInRange(3, 7));
-				// 	premadeAnimations.stopDrink(frames);
-				// } else if (choice >= 80) {
-				// 	premadeAnimations.lookAtCan(frames);
-				// }
-				premadeAnimations.talk(frames);
+				if (choice < 30) {
+					premadeAnimations.lookUp(frames);
+					addFrames(frames, "look_up_3", randomInRange(24, 24 * 3));
+					premadeAnimations.lookDown(frames);
+				} else if (choice >= 30 && choice < 85) {
+					premadeAnimations.startDrink(frames);
+					premadeAnimations.drink(frames, randomInRange(3, 7));
+					premadeAnimations.stopDrink(frames);
+				} else if (choice >= 80 && choice < 99) {
+					premadeAnimations.lookAtCan(frames);
+				} else if (choice >= 99) {
+					premadeAnimations.talk(frames);
+				}
 			}
 		}
 		addFrames(frames, "normal", randomInRange(12, 24 * 2));
@@ -257,11 +259,7 @@ import Layout from "../layouts/Layout.astro";
 
 	function drawFrame(frame: number) {
 		ctx!.clearRect(0, 0, canvas.width, canvas.height);
-		if (frames[frame] === "talk_1" && frames[frame - 1] !== "talk_1") {
-			let choice = randomInRange(2);
-			if (choice === 0) document.querySelector<HTMLAudioElement>("#audioFart")?.play();
-			else document.querySelector<HTMLAudioElement>("#audioHorn")?.play();
-		}
+		if (frames[frame] === "talk_1" && frames[frame - 1] !== "talk_1") document.querySelector<HTMLAudioElement>("#audio")?.play();
 		ctx!.drawImage(images[frames[frame]], 0, 0, canvas.width, canvas.height);
 	}
 
