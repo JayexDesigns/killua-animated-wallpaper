@@ -14,12 +14,13 @@ import Layout from "../layouts/Layout.astro";
 		width: 100dvw;
 		height: 100dvh;
 		object-fit: cover;
+		object-position: 60% 50%;
 	}
 </style>
 
 <script>
 	const canvas = document.querySelector<HTMLCanvasElement>("#canvas")!;
-	const ctx = canvas.getContext("2d");
+	const ctx = canvas.getContext("2d")!;
 
 	const imageUrls = [
 		"keyframes/blink.png",
@@ -258,9 +259,9 @@ import Layout from "../layouts/Layout.astro";
 	}
 
 	function drawFrame(frame: number) {
-		ctx!.clearRect(0, 0, canvas.width, canvas.height);
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		if (frames[frame] === "talk_1" && frames[frame - 1] !== "talk_1") document.querySelector<HTMLAudioElement>("#audio")?.play();
-		ctx!.drawImage(images[frames[frame]], 0, 0, canvas.width, canvas.height);
+		ctx.drawImage(images[frames[frame]], 0, 0, canvas.width, canvas.height);
 	}
 
 	preloadImages(imageUrls, () => {
