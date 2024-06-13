@@ -181,20 +181,24 @@ import Layout from "../layouts/Layout.astro";
 		premadeAnimations.buySoda(frames);
 
 		for (let i = 0; i < randomInRange(5, 8); ++i) {
-			const choice = randomInRange(4);
 			addFrames(frames, "normal", randomInRange(12, 24 * 2));
-			if (choice === 0) {
-				premadeAnimations.doubleBlink(frames);
-			} else if (choice === 1) {
-				premadeAnimations.lookUp(frames);
-				addFrames(frames, "look_up_3", randomInRange(24, 24 * 3));
-				premadeAnimations.lookDown(frames);
-			} else if (choice === 2) {
-				premadeAnimations.blink(frames);
-			} else if (choice === 3) {
-				premadeAnimations.startDrink(frames);
-				premadeAnimations.drink(frames, randomInRange(3, 7));
-				premadeAnimations.stopDrink(frames);
+			const choice = randomInRange(100);
+			if (i % 2 === 0) {
+				if (choice < 50) {
+					premadeAnimations.doubleBlink(frames);
+				} else if (choice >= 50) {
+					premadeAnimations.blink(frames);
+				}
+			} else {
+				if (choice < 30) {
+					premadeAnimations.lookUp(frames);
+					addFrames(frames, "look_up_3", randomInRange(24, 24 * 3));
+					premadeAnimations.lookDown(frames);
+				} else if (choice >= 30) {
+					premadeAnimations.startDrink(frames);
+					premadeAnimations.drink(frames, randomInRange(3, 7));
+					premadeAnimations.stopDrink(frames);
+				}
 			}
 		}
 		addFrames(frames, "normal", randomInRange(12, 24 * 2));
