@@ -3,8 +3,17 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Killua Animated Wallpaper">
-	<canvas id="canvas" width="1920" height="1080" class="w-dvw h-dvh object-cover"></canvas>
+	<canvas id="canvas" width="1920" height="1080"></canvas>
 </Layout>
+
+<style>
+	#canvas {
+		position: fixed;
+		width: 100dvw;
+		height: 100dvh;
+		object-fit: cover;
+	}
+</style>
 
 <script>
 	const canvas = document.querySelector<HTMLCanvasElement>("#canvas")!;
