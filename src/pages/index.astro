@@ -4,11 +4,14 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Killua Animated Wallpaper">
 	<canvas id="canvas" width="1920" height="1080"></canvas>
+	<audio id="audioFart" src="fart.mp3"></audio>
+	<audio id="audioHorn" src="horn.mp3"></audio>
 </Layout>
 
 <style>
 	#canvas {
 		position: fixed;
+		z-index: 50;
 		width: 100dvw;
 		height: 100dvh;
 		object-fit: cover;
@@ -185,6 +188,11 @@ import Layout from "../layouts/Layout.astro";
 			addFrames(frames, "stop_drink_6", frameQuantity);
 			addFrames(frames, "stop_drink_7", frameQuantity);
 			addFrames(frames, "stop_drink_8", frameQuantity);
+		},
+		talk: (frames: string[], frameQuantity = 2) => {
+			addFrames(frames, "normal", frameQuantity);
+			addFrames(frames, "talk_1", frameQuantity * 2);
+			addFrames(frames, "talk_2", frameQuantity * 2);
 		}
 	};
 
@@ -201,17 +209,18 @@ import Layout from "../layouts/Layout.astro";
 					premadeAnimations.blink(frames);
 				}
 			} else {
-				if (choice < 30) {
-					premadeAnimations.lookUp(frames);
-					addFrames(frames, "look_up_3", randomInRange(24, 24 * 3));
-					premadeAnimations.lookDown(frames);
-				} else if (choice >= 30 && choice < 85) {
-					premadeAnimations.startDrink(frames);
-					premadeAnimations.drink(frames, randomInRange(3, 7));
-					premadeAnimations.stopDrink(frames);
-				} else if (choice >= 80) {
-					premadeAnimations.lookAtCan(frames);
-				}
+				// if (choice < 30) {
+				// 	premadeAnimations.lookUp(frames);
+				// 	addFrames(frames, "look_up_3", randomInRange(24, 24 * 3));
+				// 	premadeAnimations.lookDown(frames);
+				// } else if (choice >= 30 && choice < 85) {
+				// 	premadeAnimations.startDrink(frames);
+				// 	premadeAnimations.drink(frames, randomInRange(3, 7));
+				// 	premadeAnimations.stopDrink(frames);
+				// } else if (choice >= 80) {
+				// 	premadeAnimations.lookAtCan(frames);
+				// }
+				premadeAnimations.talk(frames);
 			}
 		}
 		addFrames(frames, "normal", randomInRange(12, 24 * 2));
@@ -221,7 +230,7 @@ import Layout from "../layouts/Layout.astro";
 
 	function preloadImages(urls: string[], callback: () => void) {
 		let loadedImages = 0;
-		urls.forEach((url, index) => {
+		urls.forEach(url => {
 			const img = new Image();
 			img.src = url;
 			const path = url.split("/");
@@ -250,6 +259,11 @@ import Layout from "../layouts/Layout.astro";
 
 	function drawFrame(frame: number) {
 		ctx!.clearRect(0, 0, canvas.width, canvas.height);
+		if (frames[frame] === "talk_1" && frames[frame - 1] !== "talk_1") {
+			let choice = randomInRange(2);
+			if (choice === 0) document.querySelector<HTMLAudioElement>("#audioFart")?.play();
+			else document.querySelector<HTMLAudioElement>("#audioHorn")?.play();
+		}
 		ctx!.drawImage(images[frames[frame]], 0, 0, canvas.width, canvas.height);
 	}
 
