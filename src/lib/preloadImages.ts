@@ -1,7 +1,7 @@
 import {type imageElement} from "@/lib/types";
 
 export default function preloadImages(imageURLs: string[]) {
-	return new Promise((resolve: (value: imageElement) => void, reject) => {
+	return new Promise((resolve: (value: imageElement) => void, _reject) => {
 		let loadedImages = 0;
 		let images: imageElement = {};
 		imageURLs.forEach(url => {

@@ -8,7 +8,7 @@ let frames: frame[] = [];
 
 function drawFrame(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D, images: imageElement, frame: number) {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	if (frames[frame].callback) frames[frame].callback();
+	if (frames[frame].callback) frames[frame]!.callback();
 	ctx.drawImage(images[frames[frame].image], 0, 0, canvas.width, canvas.height);
 }
 
