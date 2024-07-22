@@ -1,18 +1,15 @@
-import generateAnimation from "@/lib/generateAnimation";
-import {type frame, type imageElement} from "@/lib/types";
-
 let currentFrame = 0;
 let frameDuration = 1000 / 24;
-let animationInterval: number | undefined;
-let frames: frame[] = [];
+let animationInterval;
+let frames = [];
 
-function drawFrame(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D, images: imageElement, frame: number) {
+function drawFrame(canvas, ctx, images, frame) {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	if (frames[frame].callback) frames[frame]!.callback();
+	if (frames[frame].callback) frames[frame].callback();
 	ctx.drawImage(images[frames[frame].image], 0, 0, canvas.width, canvas.height);
 }
 
-export default function startAnimation(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D, images: imageElement, fps = 24) {
+function startAnimation(canvas, ctx, images, fps = 24) {
 	frameDuration = 1000 / fps;
 	if (animationInterval) clearInterval(animationInterval);
 	animationInterval = setInterval(() => {
@@ -24,3 +21,11 @@ export default function startAnimation(canvas: HTMLCanvasElement, ctx: CanvasRen
 		currentFrame = (currentFrame + 1) % frames.length;
 	}, frameDuration);
 }
+
+window.onload = async () => {
+	const canvas = document.querySelector("#canvas");
+	const ctx = canvas.getContext("2d");
+
+	const images = await preloadImages(imageURLs);
+	startAnimation(canvas, ctx, images);
+};
