@@ -1,0 +1,85 @@
+{
+	"file": "index.html",
+	"general": {
+		"properties": {
+			"warning": {
+				"text": "<center><h3>⚠ For some properties changes are not applied inmediately</h3></center><br>",
+				"type": "text",
+				"order": 0
+			},
+			"numberOfActions": {
+				"text": "Number Of Actions",
+				"max": 30,
+				"min": 0,
+				"type": "slider",
+				"value": 16,
+				"order": 10,
+				"editable": true
+			},
+			"lookUpProbability": {
+				"text": "Probability To Look Up",
+				"max": 100,
+				"min": 0,
+				"type": "slider",
+				"value": 30,
+				"order": 20,
+				"editable": true
+			},
+			"drinkProbability": {
+				"text": "Probability To Drink",
+				"max": 100,
+				"min": 0,
+				"type": "slider",
+				"value": 50,
+				"order": 30,
+				"editable": true
+			},
+			"lookAtCanProbability": {
+				"text": "Probability To Look At Can",
+				"max": 100,
+				"min": 0,
+				"type": "slider",
+				"value": 20,
+				"order": 40,
+				"editable": true
+			},
+			"easterEggProbability": {
+				"condition": "easterEgg.value",
+				"text": "Probability Of Easter Egg",
+				"max": 100,
+				"min": 0,
+				"type": "slider",
+				"value": 1,
+				"order": 50,
+				"editable": true
+			},
+			"separator1": {
+				"text": "<br>",
+				"type": "text",
+				"order": 60
+			},
+			"disableBuyAndThrow": {
+				"text": "Disable Buy And Throw",
+				"type": "bool",
+				"order": 70,
+				"value": false
+			},
+			"easterEgg": {
+				"text": "Enable Easter Egg",
+				"type": "bool",
+				"order": 80,
+				"value": false
+			},
+			"schemecolor": {
+				"condition": "false",
+				"text": "Scheme Color",
+				"type": "color",
+				"order": 90,
+				"value": "0 0 0"
+			}
+		}
+	},
+	"title": "Killua Drinking Customizable Wallpaper",
+	"type": "web",
+	"version": "1.0"
+}

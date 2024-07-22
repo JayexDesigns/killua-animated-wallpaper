@@ -1,14 +1,20 @@
+const config = {
+	numberOfActions: 16,
+	disableBuyAndThrow: false,
+	easterEgg: false
+};
+
 const probabilities = {
 	action1: [
-		// Blink
 		{
+			name: "blink",
 			function: frames => {
 				animations.blink(frames);
 			},
 			probability: 50
 		},
-		// Double Blink
 		{
+			name: "doubleBlink",
 			function: frames => {
 				animations.doubleBlink(frames);
 			},
@@ -16,8 +22,8 @@ const probabilities = {
 		}
 	],
 	action2: [
-		// Look Up
 		{
+			name: "lookUp",
 			function: frames => {
 				animations.lookUp(frames);
 				animations.staticLookUp(frames, randomInRange(24, 72));
@@ -25,8 +31,8 @@ const probabilities = {
 			},
 			probability: 30
 		},
-		// Drink
 		{
+			name: "drink",
 			function: frames => {
 				animations.startDrink(frames);
 				animations.drink(frames, randomInRange(3, 7));
@@ -34,15 +40,15 @@ const probabilities = {
 			},
 			probability: 50
 		},
-		// Look At Can
 		{
+			name: "lookAtCan",
 			function: frames => {
 				animations.lookAtCan(frames);
 			},
-			probability: 19
+			probability: 20
 		},
-		// Easter Egg
 		{
+			name: "easterEgg",
 			function: frames => {
 				animations.talk(frames);
 			},
