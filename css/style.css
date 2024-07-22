@@ -1,3 +1,8 @@
+@font-face {
+	font-family: Roboto;
+	src: url(../assets/roboto.ttf);
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -8,8 +13,43 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background-color: #000000;
 	width: 100dvw;
 	height: 100dvh;
+}
+
+#loader {
+	position: absolute;
+	z-index: 100;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 0.8rem;
+}
+
+#loader p {
+	font-family: Roboto;
+	font-size: 1.3rem;
+	color: #ffffff;
+}
+
+#loader progress {
+	width: 100%;
+	border: none;
+	border-radius: 100vw;
+	height: 0.4rem;
+}
+
+#loader progress::-webkit-progress-bar {
+	background-color: #ffffff;
+}
+
+#loader progress::-webkit-progress-value {
+	background-color: #e07aff;
 }
 
 #canvas {

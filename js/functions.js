@@ -41,6 +41,7 @@ function preloadImages(imageURLs) {
 			const file = path[path.length - 1].split(".");
 			const fileName = file[0];
 			img.onload = () => {
+				document.querySelector("#loader progress").value = loadedImages;
 				images[fileName] = img;
 				loadedImages++;
 				if (loadedImages === imageURLs.length) {

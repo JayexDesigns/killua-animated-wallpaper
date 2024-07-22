@@ -26,6 +26,9 @@ window.onload = async () => {
 	const canvas = document.querySelector("#canvas");
 	const ctx = canvas.getContext("2d");
 
+	document.querySelector("#loader progress").max = imageURLs.length;
 	const images = await preloadImages(imageURLs);
+	document.querySelector("#loader").style.display = "none";
+
 	startAnimation(canvas, ctx, images);
 };
